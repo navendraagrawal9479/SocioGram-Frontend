@@ -16,7 +16,6 @@ const Friend = ({ friendId, name, subtitle, userPicturePath, size }) => {
   const { _id } = useSelector((state) => state.user);
   const token = useSelector((state) => state.token);
   const friends = useSelector((state) => state.user.friends);
-  console.log(friends);
   const [loading, setLoading] = useState(false);
 
   const primaryLight = palette.primary.light;
@@ -25,7 +24,6 @@ const Friend = ({ friendId, name, subtitle, userPicturePath, size }) => {
   const medium = palette.neutral.medium;
 
   let isFriend = friends?.find((friend) => {
-    console.log(friend._id, friendId);
     return friend._id === friendId;
   });
 

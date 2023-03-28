@@ -2,7 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import HomePage from "scenes/homePage";
 import LoginPage from "scenes/loginPage";
 import ProfilePage from "scenes/profilePage";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
@@ -15,6 +15,17 @@ function App() {
   const mode = useSelector((state) => state.mode);
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);  // change this theme when the mode changes
   const isAuth = useSelector(state => state.token);
+
+  const startServer = async () => {
+    const response = await fetch(process.env.REACT_APP_BASE_URL, {
+      method: 'GET'
+    });
+    console.log(await response.json());
+  }
+
+  useEffect(() => {
+    startServer();
+  }, []);
 
   return (
     <div className='app'>

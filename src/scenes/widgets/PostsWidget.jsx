@@ -29,7 +29,6 @@ const PostsWidget = ({ userId, isProfile = false }) => {
       }
     );
     const data = await response.json();
-    // console.log("posts", posts.concat(data.posts));
 
     setTotalPosts(data.metaData.totalPosts);
     setPosts(posts.concat(data.posts));
@@ -63,7 +62,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
     }
   }, []);
 
-  if (isLoading) {
+  if (isLoading && posts.length === 0) {
     return (
       <Box
         width={"100%"}

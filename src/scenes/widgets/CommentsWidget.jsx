@@ -46,7 +46,7 @@ const CommentsWidget = () => {
     getAllComments();
   }, []);
 
-  if (isLoading) {
+  if (isLoading && comments.length === 0) {
     return (
       <Box
         width={"100%"}
